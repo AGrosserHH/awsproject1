@@ -1,0 +1,55 @@
+ubuntu@ip-10-2-10-158:~$ mysql -h mydb.chgns2ec7sky.eu-central-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| kante             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from kante;
++------+------+
+| v    | n    |
++------+------+
+|    1 |    2 |
+|    2 |    3 |
+|    3 |    4 |
+|    2 |    3 |
+|    4 |    5 |
++------+------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO kante(v, n)
+    ->     VALUES (7,8), (9,10);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+mysql> 
+
