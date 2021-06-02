@@ -1,0 +1,34 @@
+1. Minimum RTO for a single AZ outage
+
+A minimum of 60-120 seconds is required. RTO is the time to complete the switch to a different AZ.
+
+
+
+2. Minimum RTO for a single region outage
+
+30mins to 1 hour. 
+
+RTO timing requires 
+- starting up a new Amazon RDS instance 
+- applying all changes since the last backup. 30 mins to 1 hour.
+
+The manual intervention consists of using existing replica and promote to master.Then you need reconfigure the application to point to new DB instance.
+
+
+
+3. Minimum RPO for a single AZ outage
+
+RPO is 0 becuase as secondary instance stores data. 
+
+
+
+4. Minimum RPO for a single region outage
+
+In total: 10 - 30 mins restore + 10 mins to reconfigure
+
+The data loss is related how frequent data moves from master to replica across regions.That depends on a backup frequency and the speed to restore them. RDS takes transaction
+log backups every 5 minutes.
+
+Restoring from backup also takes time.
+
+There is also application configuration change time to point to a new instance. 
